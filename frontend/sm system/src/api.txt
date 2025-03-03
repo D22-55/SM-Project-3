@@ -1,0 +1,671 @@
+1.	Register
+Header 
+Content-Type   :   application/json
+Post
+URL : http://localhost:5000/api/auth/register 
+Body :
+
+ {
+     "name": "Dev",
+     "email": "dev@gmail.com",
+     "password": "Password@123",
+     "role": "user"
+   }
+
+Respond : 
+“ User Registered Successfully”
+
+Admin Register
+Header 
+Content-Type   :   application/json
+Post
+URL : http://localhost:5000/api/auth/register 
+Body :
+
+ {
+     "name": "Arun",
+     "email": "arun@gmail.com",
+     "password": "Password@123",
+     "role": "admin"
+   }
+
+
+
+
+2.	Login
+Header 
+Content-Type   :   application/json
+Post
+URL : http://localhost:5000/api/auth/login
+Body : 
+{
+     
+     "email": "dev@gmail.com",
+     "password": "Password@123"
+     
+   }
+
+Respond : 
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjRhNGY5NmFiZWFlY2UxNjY0YjAwMyIsImVtYWlsIjoiZGV2QGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzM5ODkyMDExLCJleHAiOjE3Mzk5Nzg0MTF9.UuzjggdWxAtZsSfbbC6Ltl98Wviqsqltl2JyRc9QqPY",
+    "user": {
+        "id": "67b4a4f96abeaece1664b003",
+        "name": "Dev",
+        "email": "dev@gmail.com",
+        "role": "user"
+    }
+}
+
+Admin Login
+
+Header 
+Content-Type   :   application/json
+Post
+URL : http://localhost:5000/api/auth/login
+Body : 
+{
+  "email": "arun@gmail.com",
+  "password": "Password@123"
+}
+
+Respond : 
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjRhOWE1NmFiZWFlY2UxNjY0YjAwNiIsImVtYWlsIjoiYXJ1bkBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3Mzk4OTMxOTEsImV4cCI6MTczOTk3OTU5MX0.95pB9DF8HgNPSZl6x52B7gsESREnD82TmSgqPd5kmx0",
+    "user": {
+        "id": "67b4a9a56abeaece1664b006",
+        "name": "Arun",
+        "email": "arun@gmail.com",
+        "role": "admin"
+    }
+}
+
+3.	Check The Role 
+
+Header
+Content-Type   :   application/json
+Authorization :  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjRhNGY5NmFiZWFlY2UxNjY0YjAwMyIsImVtYWlsIjoiZGV2QGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzM5ODkyMDExLCJleHAiOjE3Mzk5Nzg0MTF9.UuzjggdWxAtZsSfbbC6Ltl98Wviqsqltl2JyRc9QqPY
+
+GET URL : http://localhost:5000/api/auth/check-role
+
+Response : 
+
+{
+    "user": {
+        "email": "dev@gmail.com",
+        "role": "user"
+    }
+}
+
+
+Admin
+
+Header
+Content-Type   :   application/json
+Authorization :  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjRhOWE1NmFiZWFlY2UxNjY0YjAwNiIsImVtYWlsIjoiYXJ1bkBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3Mzk4OTMxOTEsImV4cCI6MTczOTk3OTU5MX0.95pB9DF8HgNPSZl6x52B7gsESREnD82TmSgqPd5kmx0
+
+
+
+
+
+
+Respond :
+
+{
+    "user": {
+        "email": "arun@gmail.com",
+        "role": "admin"
+    }
+}
+
+
+
+
+
+4.	Admin Dashboard
+
+Header
+Content-Type   :   application/json
+Authorization :  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjRhOWE1NmFiZWFlY2UxNjY0YjAwNiIsImVtYWlsIjoiYXJ1bkBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3Mzk4OTMxOTEsImV4cCI6MTczOTk3OTU5MX0.95pB9DF8HgNPSZl6x52B7gsESREnD82TmSgqPd5kmx0
+
+
+GET URL : http://localhost:5000/api/admin/dashboard	
+
+Respond :
+
+{
+    "success": true,
+    "stats": {
+        "totalUsers": 11,
+        "totalProviders": 5,
+        "totalRequests": 5,
+        "pendingRequests": 5,
+        "completedRequests": 0
+    },
+    "recentRequests": [
+        {
+            "_id": "67b482a0c40152d4d0419451",
+            "user": {
+                "_id": "67b32bd3321ee8ebc3ae670f",
+                "name": "Admin004",
+                "email": "admin004@gmail.com"
+            },
+            "serviceType": "work",
+            "description": "Plumbing",
+            "status": "pending",
+            "assignedProvider": null,
+            "createdAt": "2025-02-18T12:52:48.513Z",
+            "updatedAt": "2025-02-18T12:52:48.513Z",
+            "__v": 0
+        },
+        {
+            "_id": "67b48249c40152d4d041944f",
+            "user": {
+                "_id": "67b32bd3321ee8ebc3ae670f",
+                "name": "Admin004",
+                "email": "admin004@gmail.com"
+            },
+            "serviceType": "repairing",
+            "description": "repairing",
+            "status": "pending",
+            "assignedProvider": null,
+            "createdAt": "2025-02-18T12:51:21.985Z",
+            "updatedAt": "2025-02-18T12:51:21.985Z",
+            "__v": 0
+        },
+        {
+            "_id": "67b47f3ec40152d4d0419445",
+            "user": {
+                "_id": "67b32bd3321ee8ebc3ae670f",
+                "name": "Admin004",
+                "email": "admin004@gmail.com"
+            },
+            "serviceType": "work",
+            "description": "Plumbing",
+            "status": "pending",
+            "assignedProvider": null,
+            "createdAt": "2025-02-18T12:38:22.647Z",
+            "updatedAt": "2025-02-18T12:38:22.647Z",
+            "__v": 0
+        },
+        {
+            "_id": "67ae101ba13043be4e12dd72",
+            "user": {
+                "_id": "67acb1e331dd618f8b612d6f",
+                "name": "Anand",
+                "email": "anand@gmail.com"
+            },
+            "serviceType": "Residential",
+            "description": "Plumbing Services.",
+            "status": "pending",
+            "assignedProvider": null,
+            "createdAt": "2025-02-13T15:30:35.721Z",
+            "updatedAt": "2025-02-13T15:30:35.721Z",
+            "__v": 0
+        },
+        {
+            "_id": "67a0e01abf917eca5f70b129",
+            "user": {
+                "_id": "67a0d6cbbf917eca5f70b0df",
+                "name": "Manu M",
+                "email": "manum@gmail.com"
+            },
+            "serviceType": "Plumbing",
+            "description": "Fix leaking tap",
+            "status": "pending",
+            "assignedProvider": null,
+            "createdAt": "2025-02-03T15:26:18.514Z",
+            "updatedAt": "2025-02-03T15:26:18.514Z",
+            "__v": 0
+        }
+    ]
+}
+
+
+5.	Admin Listing Users
+
+Header
+Content-Type   :   application/json
+Authorization :  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjRhOWE1NmFiZWFlY2UxNjY0YjAwNiIsImVtYWlsIjoiYXJ1bkBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3Mzk4OTMxOTEsImV4cCI6MTczOTk3OTU5MX0.95pB9DF8HgNPSZl6x52B7gsESREnD82TmSgqPd5kmx0
+
+
+GET URL : http://localhost:5000/api/admin/dashboard	
+
+Respond :	
+
+{
+    "success": true,
+    "count": 27,
+    "users": [
+        {
+            "_id": "679a406f681b1b654c62366f",
+            "name": "John Doe",
+            "email": "john@example.com",
+            "role": "user",
+            "createdAt": "2025-01-29T14:51:27.645Z",
+            "updatedAt": "2025-01-29T14:51:27.645Z",
+            "__v": 0
+        },
+        {
+            "_id": "679a40bb681b1b654c623672",
+            "name": "Dhanesh",
+            "email": "dhaneshmadhavan2255@gmail.com",
+            "role": "user",
+            "createdAt": "2025-01-29T14:52:43.222Z",
+            "updatedAt": "2025-01-29T14:52:43.222Z",
+            "__v": 0
+        },
+        {
+            "_id": "679a4109681b1b654c623678",
+            "name": "Akhil",
+            "email": "akhil@example.com",
+            "role": "user",
+            "createdAt": "2025-01-29T14:54:01.971Z",
+            "updatedAt": "2025-01-29T14:54:01.971Z",
+            "__v": 0
+        },
+        {
+            "_id": "679b7795334be30dbfb91cc2",
+            "name": "Mathew V",
+            "email": "mathewv@gmail.com",
+            "role": "user",
+            "createdAt": "2025-01-30T12:59:01.830Z",
+            "updatedAt": "2025-01-30T12:59:01.830Z",
+            "__v": 0
+        },
+        {
+            "_id": "679b9aee7fa2a4b35f699dbc",
+            "name": "Sudheesh",
+            "email": "sudheesh@gmail.com",
+            "role": "admin",
+            "createdAt": "2025-01-30T15:29:50.042Z",
+            "updatedAt": "2025-01-30T15:32:13.322Z",
+            "__v": 0
+        },
+        {
+            "_id": "679bab8348b1741704d6370a",
+            "name": "Madhavan",
+            "email": "madhavan@gmail.com",
+            "role": "user",
+            "createdAt": "2025-01-30T16:40:35.422Z",
+            "updatedAt": "2025-01-30T16:40:35.422Z",
+            "__v": 0
+        },
+        {
+            "_id": "67a0d19bbf917eca5f70b0d1",
+            "name": "Madhavan Nair",
+            "email": "madhavannair@gmail.com",
+            "role": "user",
+            "createdAt": "2025-02-03T14:24:27.588Z",
+            "updatedAt": "2025-02-03T14:24:27.588Z",
+            "__v": 0
+        },
+        {
+            "_id": "67a0d1f8bf917eca5f70b0d4",
+            "name": "Girija M",
+            "email": "girijam@gmail.com",
+            "role": "user",
+            "createdAt": "2025-02-03T14:26:00.893Z",
+            "updatedAt": "2025-02-03T14:26:00.893Z",
+            "__v": 0
+        },
+        {
+            "_id": "67a0d6cbbf917eca5f70b0df",
+            "name": "Manu M",
+            "email": "manum@gmail.com",
+            "role": "admin",
+            "createdAt": "2025-02-03T14:46:35.044Z",
+            "updatedAt": "2025-02-03T14:46:35.044Z",
+            "__v": 0
+        },
+        {
+            "_id": "67a371175f14dc5389098630",
+            "name": "Ajith Kumar",
+            "email": "ajithkumar@gmail.com",
+            "role": "admin",
+            "createdAt": "2025-02-05T14:09:27.306Z",
+            "updatedAt": "2025-02-05T14:09:27.306Z",
+            "__v": 0
+        },
+        {
+            "_id": "67acb1e331dd618f8b612d6f",
+            "name": "Anand",
+            "email": "anand@gmail.com",
+            "role": "user",
+            "createdAt": "2025-02-12T14:36:19.599Z",
+            "updatedAt": "2025-02-12T14:36:19.599Z",
+            "__v": 0
+        },
+        {
+            "_id": "67adec877b361f09a67ed14d",
+            "name": "Aladdin",
+            "email": "aladdin@gmail.com",
+            "role": "client",
+            "createdAt": "2025-02-13T12:58:47.388Z",
+            "updatedAt": "2025-02-13T12:58:47.388Z",
+            "__v": 0
+        },
+        {
+            "_id": "67aded057b361f09a67ed15c",
+            "name": "amal",
+            "email": "amal@mail.com",
+            "role": "client",
+            "createdAt": "2025-02-13T13:00:53.374Z",
+            "updatedAt": "2025-02-13T13:00:53.374Z",
+            "__v": 0
+        },
+        {
+            "_id": "67af582e4df514d221692147",
+            "name": "Albin",
+            "email": "albin@gmail.com",
+            "role": "client",
+            "createdAt": "2025-02-14T14:50:22.207Z",
+            "updatedAt": "2025-02-14T14:50:22.207Z",
+            "__v": 0
+        },
+        {
+            "_id": "67af5a944df514d221692149",
+            "name": "Acha",
+            "email": "acha@gmail.com",
+            "role": "user",
+            "createdAt": "2025-02-14T15:00:36.400Z",
+            "updatedAt": "2025-02-14T15:00:36.400Z",
+            "__v": 0
+        },
+        {
+            "_id": "67af5beb4df514d22169214b",
+            "name": "Dipin",
+            "email": "dipin@gmail.com",
+            "role": "client",
+            "createdAt": "2025-02-14T15:06:19.262Z",
+            "updatedAt": "2025-02-14T15:06:19.262Z",
+            "__v": 0
+        },
+        {
+            "_id": "67af5e65101570f546eddfcc",
+            "name": "john",
+            "email": "john@gmail.com",
+            "role": "client",
+            "createdAt": "2025-02-14T15:16:53.740Z",
+            "updatedAt": "2025-02-14T15:16:53.740Z",
+            "__v": 0
+        },
+        {
+            "_id": "67af5f10101570f546eddfce",
+            "name": "fasial",
+            "email": "faisal@gmail.com",
+            "role": "client",
+            "createdAt": "2025-02-14T15:19:44.151Z",
+            "updatedAt": "2025-02-14T15:19:44.151Z",
+            "__v": 0
+        },
+        {
+            "_id": "67af5f9e101570f546eddfd0",
+            "name": "febin",
+            "email": "febin@gmail.com",
+            "role": "client",
+            "createdAt": "2025-02-14T15:22:06.857Z",
+            "updatedAt": "2025-02-14T15:22:06.857Z",
+            "__v": 0
+        },
+        {
+            "_id": "67b0a561f47c38301331f8b9",
+            "name": "Robin",
+            "email": "robin@gmail.com",
+            "role": "client",
+            "createdAt": "2025-02-15T14:32:01.319Z",
+            "updatedAt": "2025-02-15T14:32:01.319Z",
+            "__v": 0
+        },
+        {
+            "_id": "67b0a8daca69603a881fc96b",
+            "name": "girija",
+            "email": "girija@gmail.com",
+            "role": "client",
+            "createdAt": "2025-02-15T14:46:50.455Z",
+            "updatedAt": "2025-02-15T14:46:50.455Z",
+            "__v": 0
+        },
+        {
+            "_id": "67b0aafd28ad6910a1f461fb",
+            "name": "Sumi",
+            "email": "sumi@gmail.com",
+            "role": "client",
+            "createdAt": "2025-02-15T14:55:57.675Z",
+            "updatedAt": "2025-02-15T14:55:57.675Z",
+            "__v": 0
+        },
+        {
+            "_id": "67b0acbe70ec3051114afdd1",
+            "name": "don",
+            "email": "don@gmail.com",
+            "role": "client",
+            "createdAt": "2025-02-15T15:03:26.269Z",
+            "updatedAt": "2025-02-15T15:03:26.269Z",
+            "__v": 0
+        },
+        {
+            "_id": "67b32bd3321ee8ebc3ae670f",
+            "name": "Admin004",
+            "email": "admin004@gmail.com",
+            "role": "admin",
+            "createdAt": "2025-02-17T12:30:11.394Z",
+            "updatedAt": "2025-02-17T12:30:11.394Z",
+            "__v": 0
+        },
+        {
+            "_id": "67b4a26b0f48bbf85bf69fcb",
+            "name": "Aswathy",
+            "email": "aswathy@gmail.com",
+            "role": "user",
+            "createdAt": "2025-02-18T15:08:27.737Z",
+            "updatedAt": "2025-02-18T15:08:27.737Z",
+            "__v": 0
+        },
+        {
+            "_id": "67b4a4f96abeaece1664b003",
+            "name": "Dev",
+            "email": "dev@gmail.com",
+            "role": "user",
+            "createdAt": "2025-02-18T15:19:21.976Z",
+            "updatedAt": "2025-02-18T15:19:21.976Z",
+            "__v": 0
+        },
+        {
+            "_id": "67b4a9a56abeaece1664b006",
+            "name": "Arun",
+            "email": "arun@gmail.com",
+            "role": "admin",
+            "createdAt": "2025-02-18T15:39:17.030Z",
+            "updatedAt": "2025-02-18T15:39:17.030Z",
+            "__v": 0
+        }
+    ]
+}
+
+
+6.	List Service Providers
+
+Header
+Content-Type   :   application/json
+Authorization :  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjRhOWE1NmFiZWFlY2UxNjY0YjAwNiIsImVtYWlsIjoiYXJ1bkBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3Mzk4OTMxOTEsImV4cCI6MTczOTk3OTU5MX0.95pB9DF8HgNPSZl6x52B7gsESREnD82TmSgqPd5kmx0
+
+
+GET URL : http://localhost:5000/api/admin/providers
+
+Respond :	
+
+{
+    "success": true,
+    "count": 5,
+    "providers": [
+        {
+            "verified": false,
+            "_id": "679b7b36ccd28909f8a5afcc",
+            "name": "Mathew D",
+            "email": "mathewd@gmail.com",
+            "phone": "password123",
+            "servicesOffered": [
+                "plumbing",
+                "cleaning"
+            ],
+            "rating": 0,
+            "createdAt": "2025-01-30T13:14:30.954Z",
+            "updatedAt": "2025-01-30T13:14:30.954Z",
+            "__v": 0
+        },
+        {
+            "_id": "679b9105bdae95a458231411",
+            "name": "John Mathew",
+            "email": "johnmathew@gmail.com",
+            "phone": "password123",
+            "servicesOffered": [
+                "cleaning",
+                "repairing"
+            ],
+            "rating": 0,
+            "createdAt": "2025-01-30T14:47:33.580Z",
+            "updatedAt": "2025-02-03T15:02:02.245Z",
+            "__v": 0,
+            "verified": true
+        },
+        {
+            "_id": "679b913ebdae95a458231414",
+            "name": "Issac Kuriyan",
+            "email": "issackuriyan@gmail.com",
+            "phone": "password123",
+            "servicesOffered": [
+                "plumbing",
+                "repairing"
+            ],
+            "rating": 0,
+            "createdAt": "2025-01-30T14:48:30.570Z",
+            "updatedAt": "2025-02-03T15:02:39.555Z",
+            "__v": 0,
+            "verified": true
+        },
+        {
+            "_id": "679b94a35f758e5688cc923c",
+            "name": "Issac Kuriyan",
+            "email": "mathewc@gmail.com",
+            "phone": "+917857675898",
+            "servicesOffered": [
+                "plumbing",
+                "repairing",
+                "cleaning"
+            ],
+            "rating": 0,
+            "user": null,
+            "verified": false,
+            "createdAt": "2025-01-30T15:02:59.579Z",
+            "updatedAt": "2025-01-30T15:02:59.579Z",
+            "__v": 0
+        },
+        {
+            "_id": "67a0dce6bf917eca5f70b118",
+            "name": "Manu M",
+            "email": "manum@gmail.com",
+            "phone": "9878765645",
+            "servicesOffered": [
+                "Plumbing",
+                "Electrical",
+                "Carpentry"
+            ],
+            "rating": 0,
+            "user": {
+                "_id": "67a0d6cbbf917eca5f70b0df",
+                "name": "Manu M",
+                "email": "manum@gmail.com"
+            },
+            "verified": false,
+            "createdAt": "2025-02-03T15:12:38.540Z",
+            "updatedAt": "2025-02-03T15:15:19.064Z",
+            "__v": 1
+        }
+    ]
+}
+
+
+
+7.	Verify Service Provider
+
+Header
+Content-Type   :   application/json
+Authorization :  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjRhOWE1NmFiZWFlY2UxNjY0YjAwNiIsImVtYWlsIjoiYXJ1bkBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3Mzk4OTMxOTEsImV4cCI6MTczOTk3OTU5MX0.95pB9DF8HgNPSZl6x52B7gsESREnD82TmSgqPd5kmx0
+
+
+PUT URL : http://localhost:5000/api/admin/verify-provider/67a0dce6bf917eca5f70b118
+	
+Respond :	
+
+{
+    "success": true,
+    "message": "Provider verified successfully",
+    "provider": {
+        "id": "67a0dce6bf917eca5f70b118",
+        "name": "Manu M",
+        "email": "manum@gmail.com",
+        "phone": "9878765645",
+        "servicesOffered": [
+            "Plumbing",
+            "Electrical",
+            "Carpentry"
+        ],
+        "verified": true
+    }
+}
+
+8. Toggle User Status by Admin
+http://localhost:5000/api/admin/users/67b4a9a56abeaece1664b006/toggle-status
+
+
+Body
+{
+  "confirm": true
+}
+
+
+{
+    "message": "User status updated successfully",
+    "user": {
+        "isActive": false,
+        "_id": "67b4a4f96abeaece1664b003",
+        "name": "Dev",
+        "email": "dev@gmail.com",
+        "password": "$2a$10$FQAPmdEAJV30a2nwuSYoJubQRa3.2K..iCvuelgGSD4AWrKEU/UXe",
+        "role": "user",
+        "createdAt": "2025-02-18T15:19:21.976Z",
+        "updatedAt": "2025-02-19T12:47:12.730Z",
+        "__v": 0
+    }
+}
+
+9. Admin Create Services
+
+Header
+Content-Type   :   application/json
+Authorization :  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjRhOWE1NmFiZWFlY2UxNjY0YjAwNiIsImVtYWlsIjoiYXJ1bkBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3Mzk4OTMxOTEsImV4cCI6MTczOTk3OTU5MX0.95pB9DF8HgNPSZl6x52B7gsESREnD82TmSgqPd5kmx0
+
+
+POST URL : http://localhost:5000/api/services
+
+Body
+{
+  "serviceType": "Car Washing",
+  "description": "Washing"
+
+}
+
+Respond :{
+    "success": true,
+    "data": {
+        "user": "67b4a9a56abeaece1664b006",
+        "serviceType": "Plumbing",
+        "description": "Fixing",
+        "status": "pending",
+        "assignedProvider": null,
+        "_id": "67b5d41d05a5d8cb46c9202a",
+        "createdAt": "2025-02-19T12:52:45.995Z",
+        "updatedAt": "2025-02-19T12:52:45.995Z",
+        "__v": 0
+    }
+}
